@@ -20,11 +20,21 @@ public class MinhaAgendaDeAniversarios implements AgendaDeAniversarios{
                 }
                 return nomes;
         }
-        public void removerAniversariante(String nomeAniversariante){
-            listaAniversariantes.remove(nomeAniversariante);
-        }
 
-        public ArrayList <Aniversariante> returnNiver(){
-            return listaAniversariantes;
+        public void removerAniversariante(String nomeAniversariante){
+    listaAniversariantes.removeIf(a -> {
+        boolean igual = a.getNome().equalsIgnoreCase(nomeAniversariante);
+        if (igual) System.out.println("Removendo: " + a.getNome());
+        return igual;
+    });
+}
+
+        public ArrayList <String> returnNiver(){
+            ArrayList <String> aniver = new ArrayList<>();
+
+            for(Aniversariante a : listaAniversariantes){
+                aniver.add(a.getNome());
+            }
+            return aniver;
         }
 }
